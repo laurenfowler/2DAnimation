@@ -1,0 +1,5 @@
+#define WINDOW_MAX 1000
+#define WINDOW_MIN 0
+#define VIEWPORT_MAX 900
+#define VIEWPORT_MIN 100
+
