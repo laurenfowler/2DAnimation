@@ -1,10 +1,7 @@
 //main program
-#include <GL/glut.h>
+#include "includes.h"
 #include "constants.h"
-
-void myglutInit(int argc, char** argv);
-void myInit(void);
-void display(void);
+#include "prototypes.h"
 
 int main(int argc, char** argv){
     myglutInit(argc, argv); //set the window

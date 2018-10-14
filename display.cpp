@@ -1,4 +1,4 @@
-#include <GL/glut.h>
+#include "includes.h"
 #include "constants.h"
 
 void display(void){
