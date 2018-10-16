@@ -5,6 +5,8 @@
 
 void display(void){
 
+
+	point center;
 	int radius = 400;
 	center.x = 450;
 	center.y = 450;
