@@ -1,3 +1,3 @@
-typedef struct point{
+struct point{
 	int x, y, w;
-} point; 
+}; 
