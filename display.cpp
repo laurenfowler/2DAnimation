@@ -7,8 +7,8 @@ void display(void){
 
 
 	point center;
-	int radius = 400;
-	center.x = 450;
+	int radius = 300;
+	center.x = 550;
 	center.y = 450;
 
     glClear(GL_COLOR_BUFFER_BIT); //clear window
