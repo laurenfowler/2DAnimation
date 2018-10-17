@@ -5,7 +5,7 @@ using namespace std;
 
 void circle(int radius, struct point center){
 
-	int x, y;
+	int x, y, xc, yc;
 	double d;
 	
 	//set inital values
@@ -28,16 +28,27 @@ void circle(int radius, struct point center){
 			y = y - 1;
 		}
 
-		cout << "x: " << x << "y: " << y << endl;
+		//cout << "x: " << x << "y: " << y << endl;
 
 		//cout << "xc: " << x + center.x << endl;
 		//cout << "yc: " << y + center.y << endl;
 
+        xc = center.x;
+        yc = center.y;
+
         glColor3f(0.0,0.0,0.0);
         glBegin(GL_POINTS);
-            glVertex2i(x+center.x, y+center.y);
+            glVertex2i(xc+x, yc+y);
+            glVertex2i(xc+y, yc+x);
+            glVertex2i(xc+y, yc-x);
+            glVertex2i(xc+x, yc-y);
+            glVertex2i(xc-x, yc-y);
+            glVertex2i(xc-y, yc-x);
+            glVertex2i(xc-y, yc+x);
+            glVertex2i(xc-x, yc+y);
+            
         glEnd();
-        //glFlush();
+        glFlush();
 
 
 	}
