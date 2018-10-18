@@ -4,7 +4,7 @@
 
 using namespace std;
 
-void circle(int radius, struct point center, struct point circ_points[]){
+void circle(int radius, struct point center, struct point circ_points){
 
 	int x, y, xc, yc;
 	double d;
@@ -12,10 +12,10 @@ void circle(int radius, struct point center, struct point circ_points[]){
 	//set inital values
 	x = 0;
 	y = radius;
-	
+	struct point temp = *circ_points;	
 
-	//cout << center.x << endl;
-	//cout << center.y << endl;
+
+	cout << sizeof(temp)/sizeof(temp[0]) << endl;		
 	
 	d = (5.0/4.0) - radius;
 	while (x < y){
@@ -37,7 +37,9 @@ void circle(int radius, struct point center, struct point circ_points[]){
         xc = center.x;
         yc = center.y;
 
-        glColor3f(0.0,0.0,0.0);
+//		struct point *ptr = circ_points;
+
+
         glBegin(GL_POINTS);
             glVertex2i(xc+x, yc+y);
             glVertex2i(xc+y, yc+x);
@@ -51,7 +53,6 @@ void circle(int radius, struct point center, struct point circ_points[]){
         glFlush();
 	}
 
-	cout << sizeof(circ_points) << endl;
 
 }
 

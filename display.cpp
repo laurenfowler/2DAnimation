@@ -15,12 +15,12 @@ void display(void){
 
 	//point list array
 	circumference = 2.0 * 3.14 * radius;
+	cout << "circumference: " << circumference << endl;
 	num_points = (int) floor(circumference);
 	
 	//declare array
 	struct point circ_points[num_points];
-	struct point *ptr = NULL;
-	
+	//struct point *ptr = circ_points;
 
     glClear(GL_COLOR_BUFFER_BIT); //clear window
 
@@ -28,9 +28,9 @@ void display(void){
     glRecti(VIEWPORT_MIN, VIEWPORT_MIN, VIEWPORT_MAX, VIEWPORT_MAX);
 
 	//draw circle
-	//circle(radius, center, circ_points);
+	circle(radius, center, circ_points);
 
-    sin();
+//    sin();
     glFlush();
  
 }
