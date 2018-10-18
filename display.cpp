@@ -17,9 +17,9 @@ void display(void){
     glRecti(VIEWPORT_MIN, VIEWPORT_MIN, VIEWPORT_MAX, VIEWPORT_MAX);
 
 	//draw circle
-	circle(radius, center);
+//	circle(radius, center);
 
+    sin();
     glFlush();
  
-
 }

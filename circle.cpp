@@ -1,6 +1,8 @@
 #include "struct.h"
 #include "includes.h"
 
+#define PI 3.14159265
+
 using namespace std;
 
 void circle(int radius, struct point center){
@@ -54,3 +56,41 @@ void circle(int radius, struct point center){
 	}
 
 }
+
+void sin(){
+
+    int x, y, cx, cy;
+    double tmp, rad;
+
+    cx = 450;
+    cy = 450;
+    
+    glColor3f(0.0,0.0,0.0);
+
+    for(int i=0; i<180; i++){
+       x = i;
+       rad = i * (PI/180.0);
+       tmp = sin(rad);
+       tmp = (tmp*180)/PI;
+       y = (int) floor(tmp);
+
+
+
+       glBegin(GL_POINTS);
+        glVertex2i(cx+x, cy+y);
+        glVertex2i(cx+x+180, cy-y);               
+       glEnd();
+       glFlush();
+        
+    }
+    
+}
+
+
+
+
+
+
+
+
+
