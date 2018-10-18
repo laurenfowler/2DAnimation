@@ -1,11 +1,10 @@
 #include "struct.h"
 #include "includes.h"
-
 #define PI 3.14159265
 
 using namespace std;
 
-void circle(int radius, struct point center){
+void circle(int radius, struct point center, point circ_points){
 
 	int x, y, xc, yc;
 	double d;
@@ -47,13 +46,12 @@ void circle(int radius, struct point center){
             glVertex2i(xc-x, yc-y);
             glVertex2i(xc-y, yc-x);
             glVertex2i(xc-y, yc+x);
-            glVertex2i(xc-x, yc+y);
-            
+            glVertex2i(xc-x, yc+y);    
         glEnd();
         glFlush();
-
-
 	}
+
+	cout << sizeof(circ_points) << endl;
 
 }
 

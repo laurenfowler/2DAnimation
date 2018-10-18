@@ -4,3 +4,5 @@
 #include <GL/glu.h>
 #include <GL/glut.h>
 #include <cmath>
+#include <stdlib.h>
+#include <stdio.h>
