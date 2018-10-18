@@ -4,7 +4,7 @@
 
 using namespace std;
 
-void circle(int radius, struct point center, point circ_points){
+void circle(int radius, struct point center, struct point circ_points[]){
 
 	int x, y, xc, yc;
 	double d;
