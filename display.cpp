@@ -19,7 +19,7 @@ void display(void){
 	num_points = (int) floor(circumference);
 	
 	//declare array
-	struct point circ_points[num_points];
+	struct point* circ_points = (struct point *) malloc(NUM_POINTS * sizeof(struct point));
 	//struct point *ptr = circ_points;
 
     glClear(GL_COLOR_BUFFER_BIT); //clear window
