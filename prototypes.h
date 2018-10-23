@@ -3,3 +3,4 @@ void myInit(void);
 void display(void);
 void sin();
 void circle(int radius, struct point center, struct point circ_points[]);
+int total_points(int radius, int counter);

@@ -13,11 +13,6 @@ void display(void){
 	center.x = 450;
 	center.y = 450;
 
-	//point list array
-	circumference = 2.0 * 3.14 * radius;
-	cout << "circumference: " << circumference << endl;
-	num_points = (int) floor(circumference);
-	
 	//declare array
 	struct point* circ_points = (struct point *) malloc(NUM_POINTS * sizeof(struct point));
 	//struct point *ptr = circ_points;

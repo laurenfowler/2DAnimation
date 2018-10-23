@@ -1,3 +1,5 @@
+#include <unistd.h>  
+#include "prototypes.h"
 #include "struct.h"
 #include "includes.h"
 #define PI 3.14159265
@@ -6,15 +8,24 @@ using namespace std;
 
 void circle(int radius, struct point center, struct point * circ_points){
 
-	int x, y, xc, yc;
+	int x, y, xc, yc, num_points, counter, i;
 	double d;
+	point curr;
 
-	cout << "in function" << endl;
-	
+	i = 0;
+	num_points = 0;
+	counter = 0;
+
+	num_points = total_points(radius, num_points);
+	cout << num_points << endl;
+
 	//set inital values
 	x = 0;
 	y = radius;
 
+	//set center values
+    xc = center.x;
+    yc = center.y;
 	
 	d = (5.0/4.0) - radius;
 	while (x < y){
@@ -28,18 +39,15 @@ void circle(int radius, struct point center, struct point * circ_points){
 			y = y - 1;
 		}
 
-		//cout << "x: " << x << "y: " << y << endl;
 
-		//cout << "xc: " << x + center.x << endl;
-		//cout << "yc: " << y + center.y << endl;
+		curr.x = xc + x;
+		curr.y = yc + y;
+		curr.w = 1;
+		*(circ_points + counter) = curr;
+		counter++;
 
-        xc = center.x;
-        yc = center.y;
 
-//		struct point *ptr = circ_points;
-
-    	glColor3f(0.0,0.0,0.0);
-
+    	/*glColor3f(0.0,0.0,0.0);
         glBegin(GL_POINTS);
             glVertex2i(xc+x, yc+y);
             glVertex2i(xc+y, yc+x);
@@ -50,9 +58,20 @@ void circle(int radius, struct point center, struct point * circ_points){
             glVertex2i(xc-y, yc+x);
             glVertex2i(xc-x, yc+y);    
         glEnd();
-        glFlush();
-	}
+        glFlush(); */
+	} 
 
+
+	glColor3f(0.0,0.0,0.0);
+	for (int i =0; i<counter; i++){
+		curr = *(circ_points + i);
+		
+		glBegin(GL_POINTS);
+		glVertex2i(curr.x, curr.y);
+		usleep(10000);
+		glEnd();
+		glFlush();
+	}
 
 }
 
