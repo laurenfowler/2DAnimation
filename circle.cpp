@@ -1,4 +1,3 @@
-#include <unistd.h>  
 #include "prototypes.h"
 #include "struct.h"
 #include "includes.h"
@@ -6,16 +5,16 @@
 
 using namespace std;
 
-void circle(int radius, struct point center, struct point * circ_points){
+void circle(int radius, int &num_points, struct point center, struct point * circ_points){
 
 	//general variables
-	int x, y, xc, yc, num_points, counter, i, new_spot; 
+	int x, y, xc, yc, counter, i, new_spot; 
 	double d;
 	point pixel;
 
 	//point placement in array vars
 	//seg is # of points in one 1/8th of circle
-	int seg, seg1, seg2, seg3, seg4, seg5, seg6, seg7, seg8;
+	int seg, seg1, seg2, seg3, seg4, seg5, seg6, seg7;
 
 	i = 0;
 	num_points = 0;
@@ -63,6 +62,7 @@ void circle(int radius, struct point center, struct point * circ_points){
 	*(circ_points + seg6) = pixel;
 
 
+	//midpoint circle algorithm
 	d = (5.0/4.0) - radius;
 	while (x < y){
 		if(d <= 0){
@@ -86,7 +86,6 @@ void circle(int radius, struct point center, struct point * circ_points){
 		curr1.y = yc+x;
 		curr1.w = 1;
 		new_spot = seg1 + (seg-counter);
-		//cout << "next spot: " << new_spot << endl;
 		*(circ_points + new_spot) = curr1;
 
 		point curr2;
@@ -132,38 +131,10 @@ void circle(int radius, struct point center, struct point * circ_points){
 		*(circ_points + new_spot) = curr7;
 
 		counter++; 
-
-    	/*glColor3f(0.0,0.0,0.0);
-        glBegin(GL_POINTS);
-            glVertex2i(xc+x, yc+y); //curr
-            glVertex2i(xc+y, yc+x); //curr1
-            glVertex2i(xc+y, yc-x); //curr2
-            glVertex2i(xc+x, yc-y); //curr3
-            glVertex2i(xc-x, yc-y); //curr4
-            glVertex2i(xc-y, yc-x); //curr5
-            glVertex2i(xc-y, yc+x); //curr6
-            glVertex2i(xc-x, yc+y); //curr7
-        glEnd();
-        glFlush(); */
 	} 
-
-
-
-	glColor3f(0.0,0.0,0.0);
-	for (int i =0; i<num_points; i++){
-		pixel = *(circ_points + i);
-		
-		cout << i << " : " << pixel.x << " " << pixel.y << endl;
-		glBegin(GL_POINTS);
-		glVertex2i(pixel.x, pixel.y);
-		usleep(10000);
-		glEnd();
-		glFlush();
-	}
-
 }
 
-void sin(){
+/*void sin(){
 
     int x, y, cx, cy;
     double tmp, rad;
@@ -174,7 +145,8 @@ void sin(){
     glColor3f(0.0,0.0,0.0);
 
     for(int i=0; i<180; i++){
-       x = i;
+       x = i
+
        rad = i * (PI/180.0);
        tmp = sin(rad);
        tmp = (tmp*180)/PI;
@@ -190,7 +162,7 @@ void sin(){
         
     }
     
-}
+}*/
 
 
 
