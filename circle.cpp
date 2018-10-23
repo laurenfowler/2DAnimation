@@ -8,16 +8,25 @@ using namespace std;
 
 void circle(int radius, struct point center, struct point * circ_points){
 
-	int x, y, xc, yc, num_points, counter, i;
+	//general variables
+	int x, y, xc, yc, num_points, counter, i, new_spot; 
 	double d;
-	point curr;
+	point pixel;
+
+	//point placement in array vars
+	//seg is # of points in one 1/8th of circle
+	int seg, seg1, seg2, seg3, seg4, seg5, seg6, seg7, seg8;
 
 	i = 0;
 	num_points = 0;
 	counter = 0;
 
 	num_points = total_points(radius, num_points);
-	cout << num_points << endl;
+	
+	seg = num_points/8;
+	seg1 = num_points/8;
+	seg2 = seg * 2;
+
 
 	//set inital values
 	x = 0;
@@ -40,12 +49,30 @@ void circle(int radius, struct point center, struct point * circ_points){
 		}
 
 
+		point curr;
 		curr.x = xc + x;
 		curr.y = yc + y;
 		curr.w = 1;
 		*(circ_points + counter) = curr;
-		counter++;
 
+		point curr1;
+		curr1.x = xc+y;
+		curr1.y = yc+x;
+		curr1.w = 1;
+		new_spot = seg1 + (seg-counter); 
+		//cout << "next spot: " << new_spot << endl;
+		*(circ_points + new_spot) = curr1;
+
+		point curr2;
+		curr2.x = xc+y;
+		curr2.y = yc-x;
+		curr2.w = 1;
+		new_spot = 0;
+		new_spot = seg2 + counter;
+		//cout << "new spot: " << new_spot << endl;
+		*(circ_points + new_spot) = curr2; 
+
+		counter++; 
 
     	/*glColor3f(0.0,0.0,0.0);
         glBegin(GL_POINTS);
@@ -62,12 +89,14 @@ void circle(int radius, struct point center, struct point * circ_points){
 	} 
 
 
+
 	glColor3f(0.0,0.0,0.0);
-	for (int i =0; i<counter; i++){
-		curr = *(circ_points + i);
+	for (int i =0; i<seg2+seg; i++){
+		pixel = *(circ_points + i);
 		
+		cout << i << " : " << pixel.x << " " << pixel.y << endl;
 		glBegin(GL_POINTS);
-		glVertex2i(curr.x, curr.y);
+		glVertex2i(pixel.x, pixel.y);
 		usleep(10000);
 		glEnd();
 		glFlush();
