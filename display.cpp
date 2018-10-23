@@ -9,9 +9,9 @@ void display(void){
 	int radius, num_points;
 	double circumference;
 
-	radius = 300;
-	center.x = 450;
-	center.y = 450;
+	radius = 150;
+	center.x = 300;
+	center.y = 400;
 
 	//declare array
 	struct point* circ_points = (struct point *) malloc(NUM_POINTS * sizeof(struct point));
