@@ -1,6 +1,6 @@
 #include "prototypes.h"
-#include "struct.h"
 #include "includes.h"
+#include "globals.h"
 #define PI 3.14159265
 
 using namespace std;

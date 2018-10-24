@@ -2,11 +2,16 @@
 #include "includes.h"
 #include "constants.h"
 #include "prototypes.h"
+#include "globals.h"
 
 int main(int argc, char** argv){
     myglutInit(argc, argv); //set the window
     myInit(); //declare attributes
     //mouse and keyboard shit here
+    
+	//fill tree arrays
+		
+
     glutDisplayFunc(display);
     glutMainLoop();
     
