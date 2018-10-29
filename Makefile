@@ -1,23 +1,27 @@
+CC = g++ 
 GLUT = -lGL -lGLU -lglut
-OBJS = display.o circle.o calc_points.o tree.o
+OBJS = display.o circle.o calc_points.o draw_tree.o tree.o
 
 run: main.o $(OBJS)
-	c++ main.o $(GLUT) $(OBJS)
+	$(CC) main.o $(OBJS) $(GLUT) 
 
-main.o: main.cpp 
-	c++ -c main.cpp
+main.o: main.cpp  
+	$(CC) -c main.cpp
 
 display.o: display.cpp
-	c++ -c display.cpp
+	$(CC) -c display.cpp
 
 circle.o: circle.cpp
-	c++ -c circle.cpp
+	$(CC) -c circle.cpp
 
 calc_points.o: calc_points.cpp
-	c++ -c calc_points.cpp
+	$(CC) -c calc_points.cpp
+
+draw_tree.o: draw_tree.cpp
+	$(CC) -c draw_tree.cpp
 
 tree.o: tree.cpp
-	c++ -c tree.cpp
+	$(CC) -c tree.cpp
 
 clean:
 	rm *.o

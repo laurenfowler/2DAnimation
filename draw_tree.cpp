@@ -1,10 +1,10 @@
 #include "includes.h"
 #include "constants.h"
 #include "struct.h"
-#include "prototypes.h"
 
-using namespace std;
-void draw_tree(int &num_points, struct point * circ_points, struct point * trunk_points){
+#include "namespaces.h"
+
+void draw_tree(int num_points,  point *circ_points, point *trunk_points){
 
 	point pixel;
 	int cutoff;

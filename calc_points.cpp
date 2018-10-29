@@ -1,6 +1,6 @@
 #include "includes.h"
 
-using namespace std;
+#include "namespaces.h"
 
 int total_points(int radius, int counter){
 	int x, y;
