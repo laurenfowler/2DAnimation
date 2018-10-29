@@ -1,6 +1,7 @@
 //main program
 #include "includes.h"
 #include "constants.h"
+#include "struct.h"
 #include "prototypes.h"
 #include "globals.h"
 

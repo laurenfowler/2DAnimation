@@ -1,10 +1,10 @@
 GLUT = -lGL -lGLU -lglut
 OBJS = display.o circle.o calc_points.o tree.o
 
-run: main.o 
+run: main.o $(OBJS)
 	c++ main.o $(GLUT) $(OBJS)
 
-main.o: main.cpp $(OBJS)
+main.o: main.cpp 
 	c++ -c main.cpp
 
 display.o: display.cpp
