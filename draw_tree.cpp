@@ -2,7 +2,7 @@
 #include "constants.h"
 #include "struct.h"
 
-#include "namespaces.h"
+//#include "namespaces.h"
 
 void draw_tree(int num_points,  point *circ_points, point *trunk_points){
 

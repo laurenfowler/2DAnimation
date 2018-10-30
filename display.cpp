@@ -1,9 +1,7 @@
 #include "includes.h"
 #include "constants.h"
 #include "prototypes.h"
-
-
-#include "namespaces.h"
+//#include "namespaces.h"
 
 void display(void){
 	
@@ -12,6 +10,9 @@ void display(void){
     extern struct point *circ_points;
     extern struct point *trunk;
     extern struct point *trunk_points;
+
+    point pixel;
+
 
     // To insure that these got executed I pulled the malloc into main
     circ = (struct point *) malloc(NUM_POINTS * sizeof(struct point));
@@ -25,7 +26,31 @@ void display(void){
     glRecti(VIEWPORT_MIN, VIEWPORT_MIN, VIEWPORT_MAX, VIEWPORT_MAX);
 
     init_tree();
-	draw_tree(points, circ, trunk);
+
+    glColor3f(0.0,0.0,0.0);
+
+    pixel = *(trunk + 0);
+
+    for(int i=0; i<points; i++){
+        pixel = *(circ + i);
+      cout << i << ": "<< pixel.x << " " << pixel.y << endl;
+        glBegin(GL_LINE_STRIP);
+            //if(pixel.x > cutoff){
+                glVertex2i(pixel.x, pixel.y);
+            //}
+        glEnd();
+        //glFlush();
+    }
+
+/*    glBegin(GL_LINE_STRIP);
+        for(int i=0; i<6; i++){
+            pixel = *(trunk + i);
+            glVertex2i(pixel.x, pixel.y);
+        }
+    glEnd(); */
+    glFlush(); 
+
+
     free(circ);
     free(circ_points);
     free(trunk);

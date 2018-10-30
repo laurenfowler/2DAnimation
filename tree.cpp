@@ -2,7 +2,7 @@
 #include "constants.h"
 #include "prototypes.h"
 
-#include "namespaces.h"
+//#include "namespaces.h"
 
 void init_tree(){
 	point center, pixel;
@@ -21,7 +21,7 @@ void init_tree(){
 	//calculate circle points
 	circle(radius, &num_points, center, circ);
 	pixel = *(circ + 606);
-    *(trunk_points + 0) = pixel;
+    *(trunk + 0) = pixel;
 
     pixel.x = 680;
     pixel.y = 470;
@@ -48,7 +48,32 @@ void init_tree(){
 
 	points = num_points;	
 
-	
+    
+    pixel.x = 0.0;
+    pixel.y = 0.0;
+    pixel.w = 0.0;
+
+    //weird code to remove unecessary points
+    for(int i=606; i<=930; i++){
+        *(circ + i) = pixel;          
+    }
+
+    //fill in trunk points
+    int count = 0;
+    for(int i = 606; i<=611; i++){
+        *(circ + i) = *(trunk + count);
+        count++;
+    }
+    
+    count = 0;
+    for(int i=612; i<=705; i++){
+        *(circ + i) = *(circ + (931 + count));
+        count++;
+        //*(circ + 930 + count) = pixel;
+    }
+
+    points = points - 324 + 6 -1; // -1 is bc there was a weird extra 0,0
+
 
 }
 
