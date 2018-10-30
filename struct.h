@@ -2,6 +2,6 @@
 #define STRUCT_H
 typedef struct point{
 	int x, y, w;
-}Point;
+} point;
 
 #endif 

@@ -1,5 +1,6 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
+
 #define WINDOW_MAX 1000 
 #define WINDOW_MIN 0
 #define VIEWPORT_MAX 900

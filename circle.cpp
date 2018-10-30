@@ -1,11 +1,10 @@
 #include "prototypes.h"
 #include "includes.h"
-#include "globals.h"
 #define PI 3.14159265
 
-using namespace std;
+#include "namespaces.h"
 
-void circle(int radius, int &num_points, struct point center, struct point * circ_points){
+void circle(int radius, int *num_points, struct point center, struct point * circ_points){
 
 	//general variables
 	int x, y, xc, yc, counter, i, new_spot; 
@@ -17,13 +16,13 @@ void circle(int radius, int &num_points, struct point center, struct point * cir
 	int seg, seg1, seg2, seg3, seg4, seg5, seg6, seg7;
 
 	i = 0;
-	num_points = 0;
+	*num_points = 0;
 	counter = 1;
 
-	num_points = total_points(radius, num_points);
+	*num_points = total_points(radius, *(num_points));
 	
-	seg = num_points/8;
-	seg1 = num_points/8;
+	seg = *num_points/8;
+	seg1 = *num_points/8;
 	seg2 = seg * 2;
 	seg3 = seg * 3;
 	seg4 = seg * 4;
