@@ -8,7 +8,6 @@ struct point *circ;
 struct point *trunk;
 struct point *circ_points;
 struct point *trunk_points;
-
-double rotate;
+double spin;
 
 #endif

@@ -1,6 +1,6 @@
 CC = g++ 
 GLUT = -lGL -lGLU -lglut
-OBJS = display.o circle.o calc_points.o tree.o keyboard_mouse.o
+OBJS = display.o circle.o calc_points.o tree.o keyboard_mouse.o #matrix_ops.o
 
 run: main.o $(OBJS)
 	$(CC) main.o $(OBJS) $(GLUT) 
@@ -22,6 +22,9 @@ keyboard_mouse.o: keyboard_mouse.cpp
 
 tree.o: tree.cpp
 	$(CC) -c tree.cpp
+
+#matrix_ops.o: matrix_ops.cpp
+#	$(CC) -c matrix_ops.cpp
 
 clean:
 	rm *.o
