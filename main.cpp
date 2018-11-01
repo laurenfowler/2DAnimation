@@ -20,7 +20,7 @@ int main(int argc, char** argv){
 
 void myglutInit(int argc, char** argv){
     glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB); //glut_double later
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB); //glut_double later
     glutInitWindowSize(WINDOW_MAX, WINDOW_MAX); 
     glutInitWindowPosition(0,0); //starts in upper left corner
     glutCreateWindow("Tree Animation");

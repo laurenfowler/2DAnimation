@@ -28,18 +28,22 @@ void display(void){
     init_tree();
 
     glColor3f(0.0,0.0,0.0);
+	cout << "going into pipeline" << endl;
     pipeline(circ, circ_points, points);
-
+	cout << "exit pipeline" << endl;
+	
 
     pixel = *(trunk + 0);
 
     glBegin(GL_LINE_LOOP);
     for(int i=0; i<points; i++){
-        pixel = *(circ + i);
+        pixel = *(circ_points + i);
         glVertex2i(pixel.x, pixel.y);
     }
 	glEnd();
     glFlush(); 
+
+	glutSwapBuffers();
 
     free(circ);
     free(circ_points);
