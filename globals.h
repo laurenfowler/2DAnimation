@@ -9,5 +9,6 @@ struct point *trunk;
 struct point *circ_points;
 struct point *trunk_points;
 double spin;
+bool rotate_flag;
 
 #endif

@@ -7,6 +7,7 @@ void mouse(int button, int state, int x, int y){
 
 
     extern double spin;
+    extern bool rotate_flag;
     int new_y = WINDOW_MAX - y;
 
     switch(button){
@@ -15,7 +16,8 @@ void mouse(int button, int state, int x, int y){
             if(state == GLUT_DOWN){
                 if( (VIEWPORT_MIN < x) && (x < VIEWPORT_MAX) && (VIEWPORT_MIN < new_y) && (new_y < VIEWPORT_MAX)){
                     spin = spin + 10.0; 
-                    check_spin();                  
+                    check_spin();
+                    rotate_flag = 1;                  
                     //glutPostRedisplay();
                 }
             }
@@ -25,6 +27,7 @@ void mouse(int button, int state, int x, int y){
                 if( (VIEWPORT_MIN < x) && (x < VIEWPORT_MAX) && (VIEWPORT_MIN < new_y) && (new_y < VIEWPORT_MAX)){
                     spin = spin - 10.0;
                     check_spin();
+                    rotate_flag = 1;
                     //glutPostRedisplay();
                 }
             }

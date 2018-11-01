@@ -10,5 +10,6 @@ void init_tree();
 void mouse(int button, int state, int x, int y);
 void keyboard(unsigned char key, int x, int y);
 void check_spin();
+void pipeline(point*, point*, int points);
 using namespace std;
 #endif

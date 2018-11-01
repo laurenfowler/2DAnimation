@@ -28,6 +28,8 @@ void display(void){
     init_tree();
 
     glColor3f(0.0,0.0,0.0);
+    pipeline(circ, circ_points, points);
+
 
     pixel = *(trunk + 0);
 
