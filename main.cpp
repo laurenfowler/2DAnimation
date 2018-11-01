@@ -10,11 +10,9 @@ int main(int argc, char** argv){
 
     myglutInit(argc, argv); //set the window
     myInit(); //declare attributes
-    //mouse and keyboard shit here
-    
-	//fill tree arrays
-		
-
+    //mouse and keyboard
+    glutMouseFunc(mouse);
+    glutKeyboardFunc(keyboard);    
     glutDisplayFunc(display);
     glutMainLoop();
     

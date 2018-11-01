@@ -1,6 +1,6 @@
 CC = g++ 
 GLUT = -lGL -lGLU -lglut
-OBJS = display.o circle.o calc_points.o tree.o
+OBJS = display.o circle.o calc_points.o tree.o keyboard_mouse.o
 
 run: main.o $(OBJS)
 	$(CC) main.o $(OBJS) $(GLUT) 
@@ -17,8 +17,8 @@ circle.o: circle.cpp
 calc_points.o: calc_points.cpp
 	$(CC) -c calc_points.cpp
 
-#draw_tree.o: draw_tree.cpp
-#	$(CC) -c draw_tree.cpp
+keyboard_mouse.o: keyboard_mouse.cpp
+	$(CC) -c keyboard_mouse.cpp
 
 tree.o: tree.cpp
 	$(CC) -c tree.cpp

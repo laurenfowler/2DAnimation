@@ -34,22 +34,10 @@ void display(void){
     glBegin(GL_LINE_LOOP);
     for(int i=0; i<points; i++){
         pixel = *(circ + i);
-      cout << i << ": "<< pixel.x << " " << pixel.y << endl;
-            //if(pixel.x > cutoff){
-                glVertex2i(pixel.x, pixel.y);
-            //}
-        //glFlush();
+        glVertex2i(pixel.x, pixel.y);
     }
 	glEnd();
-
-/*    glBegin(GL_LINE_STRIP);
-        for(int i=0; i<6; i++){
-            pixel = *(trunk + i);
-            glVertex2i(pixel.x, pixel.y);
-        }
-    glEnd(); */
     glFlush(); 
-
 
     free(circ);
     free(circ_points);

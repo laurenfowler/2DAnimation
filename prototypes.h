@@ -4,10 +4,10 @@
 void myglutInit(int argc, char** argv);
 void myInit(void);
 void display();
-//void sin();
 void circle(int , int* , point, point* );
 int total_points(int , int );
-//void draw_tree(int, point*, point* );
 void init_tree();
+void mouse(int button, int state, int x, int y);
+void keyboard(unsigned char key, int x, int y);
 using namespace std;
 #endif
