@@ -15,8 +15,8 @@ void mouse(int button, int state, int x, int y){
         case GLUT_LEFT_BUTTON:
             if(state == GLUT_DOWN){
                 if( (VIEWPORT_MIN < x) && (x < VIEWPORT_MAX) && (VIEWPORT_MIN < new_y) && (new_y < VIEWPORT_MAX)){
-                    dspin = dspin - 10.0; 
-                    spin_tree();
+					cout << "left button" << endl;
+                    dspin = dspin - 1.0; 
                     //rotate_flag = 1;
                     glutIdleFunc(spin_tree);                  
                 }
@@ -25,8 +25,8 @@ void mouse(int button, int state, int x, int y){
         case GLUT_RIGHT_BUTTON:
             if(state == GLUT_DOWN){
                 if( (VIEWPORT_MIN < x) && (x < VIEWPORT_MAX) && (VIEWPORT_MIN < new_y) && (new_y < VIEWPORT_MAX)){
-                    dspin = dspin + 10.0;
-                    spin_tree();
+					cout << "right button" << endl;
+                    dspin = dspin + 1.0;
                     //rotate_flag = 1;
                     glutIdleFunc(spin_tree);
                 }
@@ -50,6 +50,7 @@ void keyboard(unsigned char key, int x, int y){
 }
 
 void spin_tree(){
+	cout << "in spin tree" << endl;
     extern double spin;
 	extern double dspin;
 	spin = spin + dspin;

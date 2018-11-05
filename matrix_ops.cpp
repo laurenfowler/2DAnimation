@@ -9,7 +9,7 @@ void translate_mat(double x, double y, double *tPtr){
 	tPtr[3] = 0.0; tPtr[4] = 1.0; tPtr[5] = y;
 	tPtr[6] = 0.0; tPtr[7] = 0.0; tPtr[8] = 1.0;
 
-	cout << *(tPtr + 0) << endl;
+	//cout << *(tPtr + 0) << endl;
 }
 
 void rotation_mat(double mSpin, double *tPtr){
@@ -31,23 +31,23 @@ void matrix_mult(int mSize, double pts[], double *tPtr){
 	for(int i=0; i<mSize; i++){
 		tmp[i] = 0.0;
 	}
-	cout << "filled temp matrix" << endl;
+	//cout << "filled temp matrix" << endl;
 
 	for(int i=0; i<mSize; i++){
 		for(int j=0; j<mSize; j++){
-			cout << i*mSize+j << endl;
-			cout << *(tPtr + (i+mSize+j)) << endl;
+	//		cout << i*mSize+j << endl;
+	//		cout << *(tPtr + (i+mSize+j)) << endl;
 			tmp[i] = tmp[i] + (pts[j] * *(tPtr + (i*mSize + j)));
 		}
 	}
 
-	cout << "did multiplication" << endl;
+	//cout << "did multiplication" << endl;
 
 	//fill pts with tmp
 	for(int i=0; i<mSize; i++){
 		pts[i] = tmp[i];
 	}
 
-	cout << "refilled pts" << endl;
+	//cout << "refilled pts" << endl;
 
 }

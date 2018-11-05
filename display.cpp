@@ -36,16 +36,18 @@ void display(void){
     for(int i=0; i<points; i++){
         pixel = *(circ_points + i);
         glVertex2i(pixel.x, pixel.y);
-		cout << i << " :" << pixel.x << " " << pixel.y << endl;
+		//cout << i << " :" << pixel.x << " " << pixel.y << endl;
     }
+	cout << "before glEnd()" << endl;
 	glEnd();
     glFlush(); 
+	cout << "printed tree" << endl;
 
 	glutSwapBuffers();
 
-    free(circ);
+    //free(circ);
     free(circ_points);
-    free(trunk);
-    free(trunk_points);
+    //free(trunk);
+    //free(trunk_points);
 
 }
