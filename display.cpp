@@ -29,16 +29,14 @@ void display(void){
 
     glColor3f(0.0,0.0,0.0);
 	cout << "going into pipeline" << endl;
-    pipeline(circ, circ_points, points);
+    pipeline(circ, points);
 	cout << "exit pipeline" << endl;
 	
-
-    pixel = *(trunk + 0);
-
     glBegin(GL_LINE_LOOP);
     for(int i=0; i<points; i++){
         pixel = *(circ_points + i);
         glVertex2i(pixel.x, pixel.y);
+		cout << i << " :" << pixel.x << " " << pixel.y << endl;
     }
 	glEnd();
     glFlush(); 

@@ -2,10 +2,10 @@
 #include "constants.h"
 #include "prototypes.h"
 
-void pipeline(struct point * circ, struct point * circ_points, int points){
+void pipeline(struct point * circ, int points){
 
     extern double spin;
-	
+	extern struct point *circ_points;	
 	double transform[9];
 	double *tPtr;
 
@@ -30,8 +30,6 @@ void pipeline(struct point * circ, struct point * circ_points, int points){
 	//translate back
 	translate_mat(WINDOW_MAX/2, WINDOW_MAX/2, tPtr);
 	apply_transform(circ_points, points, tPtr);
-
-	cout << "exit pipeline" << endl;
 
 }
 
