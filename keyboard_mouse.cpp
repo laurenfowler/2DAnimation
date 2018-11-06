@@ -49,10 +49,20 @@ void mouse(int button, int state, int x, int y){
 
 void keyboard(unsigned char key, int x, int y){
 
+	extern double reflect;
+	extern double spin;
     //close program
     if (key=='q' || key=='Q'){
         exit(0);
     }
+	if (key=='r' || key=='R'){
+		reflect = PI;
+		spin = spin + 180; //add 180 so reflected tree draws and spins correctly
+		if(spin > 360.0){
+			spin = spin - 360.0;
+		}	
+		glutPostRedisplay();
+	}
 
 }
 

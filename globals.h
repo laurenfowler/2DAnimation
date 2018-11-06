@@ -12,4 +12,5 @@ double spin;
 double dspin;
 double scale = 1.0;
 double dscale;
+double reflect;
 #endif

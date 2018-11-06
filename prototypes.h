@@ -17,5 +17,6 @@ void matrix_mult(int mSize, double pts[], double *tPtr);
 void rotation_mat(double mSpin, double *tPtr);
 void scale_tree();
 void scale_mat(double scale, double *tPtr);
+void reflection_mat(double reflect, double *tPtr);
 using namespace std;
 #endif

@@ -23,6 +23,13 @@ void rotation_mat(double mSpin, double *tPtr){
 	tPtr[6] = 0.0; tPtr[7] = 0.0; tPtr[8] = 1.0;
 }
 
+void reflection_mat(double reflect, double *tPtr){
+	
+	tPtr[0] = cos(reflect); tPtr[1] = -sin(reflect); tPtr[2] = 0.0;
+	tPtr[3] = sin(reflect); tPtr[4] = cos(reflect); tPtr[5] = 0.0;
+	tPtr[6] = 0.0; tPtr[7] = 0.0; tPtr[8] = 1.0;
+}
+
 void scale_mat(double scale, double *tPtr){
 	tPtr[0] = scale; tPtr[1] = 0.0; tPtr[2] = 0.0;
 	tPtr[3] = 0.0; tPtr[4] = scale; tPtr[5] = 0.0;

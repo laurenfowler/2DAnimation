@@ -6,6 +6,7 @@ void pipeline(struct point * circ, int points){
 
     extern double spin;
 	extern double scale;
+	extern double reflect;
 	extern struct point *circ_points;	
 	double transform[9];
 	double *tPtr;
@@ -18,6 +19,11 @@ void pipeline(struct point * circ, int points){
 
 	//apply to circ and store in circ_points
 	apply_transform(circ_points, points, tPtr);
+
+	//build reflection matrix
+	reflection_mat(reflect, tPtr);
+	apply_transform(circ_points, points, tPtr);
+	reflect = 0.0;
 
 	//build rotation matrix
 	rotation_mat(spin, tPtr);
