@@ -28,9 +28,9 @@ void display(void){
     init_tree();
 
     glColor3f(0.0,0.0,0.0);
-	cout << "going into pipeline" << endl;
+	//cout << "going into pipeline" << endl;
     pipeline(circ, points);
-	cout << "exit pipeline" << endl;
+	//cout << "exit pipeline" << endl;
 	
     glBegin(GL_LINE_LOOP);
     for(int i=0; i<points; i++){
@@ -38,10 +38,10 @@ void display(void){
         glVertex2i(pixel.x, pixel.y);
 		//cout << i << " :" << pixel.x << " " << pixel.y << endl;
     }
-	cout << "before glEnd()" << endl;
+	//cout << "before glEnd()" << endl;
 	glEnd();
     glFlush(); 
-	cout << "printed tree" << endl;
+	//cout << "printed tree" << endl;
 
 	glutSwapBuffers();
 

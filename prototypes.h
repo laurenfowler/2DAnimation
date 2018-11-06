@@ -15,5 +15,7 @@ void translate_mat(double x, double y, double * tPtr);
 void apply_transform(point*, int pnts, double *tPtr);
 void matrix_mult(int mSize, double pts[], double *tPtr);
 void rotation_mat(double mSpin, double *tPtr);
+void scale_tree();
+void scale_mat(double scale, double *tPtr);
 using namespace std;
 #endif

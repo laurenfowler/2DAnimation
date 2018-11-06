@@ -10,5 +10,6 @@ struct point *circ_points;
 struct point *trunk_points;
 double spin;
 double dspin;
-
+double scale = 1.0;
+double dscale;
 #endif

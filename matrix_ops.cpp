@@ -23,6 +23,12 @@ void rotation_mat(double mSpin, double *tPtr){
 	tPtr[6] = 0.0; tPtr[7] = 0.0; tPtr[8] = 1.0;
 }
 
+void scale_mat(double scale, double *tPtr){
+	tPtr[0] = scale; tPtr[1] = 0.0; tPtr[2] = 0.0;
+	tPtr[3] = 0.0; tPtr[4] = scale; tPtr[5] = 0.0;
+	tPtr[6] = 0.0; tPtr[7] = 0.0; tPtr[8] = 1.0;
+}
+
 void matrix_mult(int mSize, double pts[], double *tPtr){
 
 	double tmp[3];

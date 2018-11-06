@@ -5,9 +5,8 @@
 
 void mouse(int button, int state, int x, int y){
 
-
-    extern double spin;
     extern double dspin;
+	extern double dscale;
     int new_y = WINDOW_MAX - y;
 
     switch(button){
@@ -15,21 +14,29 @@ void mouse(int button, int state, int x, int y){
         case GLUT_LEFT_BUTTON:
             if(state == GLUT_DOWN){
                 if( (VIEWPORT_MIN < x) && (x < VIEWPORT_MAX) && (VIEWPORT_MIN < new_y) && (new_y < VIEWPORT_MAX)){
-					cout << "left button" << endl;
                     dspin = dspin - 1.0; 
                     //rotate_flag = 1;
                     glutIdleFunc(spin_tree);                  
                 }
+				else{
+					dscale = dscale + 0.05;
+					scale_tree();
+					break;
+				}
             }
             break;
         case GLUT_RIGHT_BUTTON:
             if(state == GLUT_DOWN){
                 if( (VIEWPORT_MIN < x) && (x < VIEWPORT_MAX) && (VIEWPORT_MIN < new_y) && (new_y < VIEWPORT_MAX)){
-					cout << "right button" << endl;
                     dspin = dspin + 1.0;
                     //rotate_flag = 1;
                     glutIdleFunc(spin_tree);
                 }
+				else{
+					dscale = dscale -0.05;
+					scale_tree();
+					break;
+				}
             }
             break;
         default:
@@ -50,7 +57,6 @@ void keyboard(unsigned char key, int x, int y){
 }
 
 void spin_tree(){
-	cout << "in spin tree" << endl;
     extern double spin;
 	extern double dspin;
 	spin = spin + dspin;
@@ -58,4 +64,14 @@ void spin_tree(){
         spin = spin - 360.0;
     }
     glutPostRedisplay();
+}
+
+void scale_tree(){
+	extern double dscale;
+	extern double scale;
+	scale = 1.0 + dscale;
+	if(scale < 0.0){
+		scale = 0.0;
+	}
+	glutPostRedisplay();
 }
