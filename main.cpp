@@ -27,7 +27,7 @@ void myglutInit(int argc, char** argv){
 }
 
 void myInit(void){
-    glClearColor(0.0, 0.0, 0.0, 1.0); //black background
+    glClearColor(1.0, 0.0, 0.0, 1.0); //black background
     glPointSize(1.0);
 
     //viewing

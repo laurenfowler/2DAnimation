@@ -37,6 +37,9 @@ void pipeline(struct point * circ, int points){
 	translate_mat(WINDOW_MAX/2, WINDOW_MAX/2, tPtr);
 	apply_transform(circ_points, points, tPtr);
 
+	//clip clip clip clip clip
+
+
 }
 
 void apply_transform(struct point * circ_points, int points, double * tPtr){
