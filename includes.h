@@ -6,4 +6,6 @@
 #include <cmath>
 #include <stdlib.h>
 #include <stdio.h>
+#include <list>
+#include <iterator>
 #include <unistd.h>

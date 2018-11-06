@@ -10,6 +10,10 @@ void pipeline(struct point * circ, int points){
 	extern struct point *circ_points;	
 	double transform[9];
 	double *tPtr;
+	list <point> poly_list_in; //declare list for clipping
+	list <point> poly_list_out; //output of clipping
+	point pixel;
+
 
 	circ_points = circ;
 
@@ -38,6 +42,15 @@ void pipeline(struct point * circ, int points){
 	apply_transform(circ_points, points, tPtr);
 
 	//clip clip clip clip clip
+
+	//transfer circ_points into a list
+	for(int i=0; i<points; i++){
+		pixel = *(circ_points + i);
+		poly_list_in.push_back(pixel);
+	}
+	
+	//call clip
+	sh_clip(poly_list_in, poly_list_out);
 
 
 }

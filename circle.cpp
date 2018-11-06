@@ -1,7 +1,6 @@
-#include "prototypes.h"
 #include "includes.h"
-//efine PI 3.14159265
-
+#include "constants.h"
+#include "prototypes.h"
 //#include "namespaces.h"
 
 void circle(int radius, int *num_points, struct point center, struct point * circ_points){
