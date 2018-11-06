@@ -51,10 +51,12 @@ void keyboard(unsigned char key, int x, int y){
 
 	extern double reflect;
 	extern double spin;
+	extern double dspin;
     //close program
     if (key=='q' || key=='Q'){
         exit(0);
     }
+	//reflect tree
 	if (key=='r' || key=='R'){
 		reflect = PI;
 		spin = spin + 180; //add 180 so reflected tree draws and spins correctly
@@ -62,6 +64,14 @@ void keyboard(unsigned char key, int x, int y){
 			spin = spin - 360.0;
 		}	
 		glutPostRedisplay();
+	}
+	//stop animation
+	if (key == 's' || key == 'S'){
+		dspin = 0.0;
+	}
+	if(key == 'i' || key == 'I'){
+		dspin = 0.0;
+		spin = 0.0;
 	}
 
 }
