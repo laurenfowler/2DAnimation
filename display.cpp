@@ -34,13 +34,12 @@ void display(void){
 	//cout << "exit pipeline" << endl;
 
 	int pts = *new_length;
-	cout << pts << endl;
+	//cout << pts << endl;
 
     glBegin(GL_LINE_LOOP);
     for(int i=0; i<pts; i++){
         pixel = *(circ_points + i);
         glVertex2i(pixel.x, pixel.y);
-		cout << i << " :" << pixel.x << " " << pixel.y << endl;
     }
 	//cout << "before glEnd()" << endl;
 	glEnd();
