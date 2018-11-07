@@ -12,6 +12,8 @@ void init_tree(){
     extern struct point *circ;
     extern struct point *trunk;
     extern struct point *trunk_points;    
+	extern int *new_length;
+
 
 	//center of circle
 	center.x = 650;
@@ -48,7 +50,8 @@ void init_tree(){
 
 	points = num_points;	
 
-    
+	new_length = &num_points;
+
     pixel.x = 0.0;
     pixel.y = 0.0;
     pixel.w = 0.0;

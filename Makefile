@@ -1,6 +1,6 @@
 CC = g++ 
 GLUT = -lGL -lGLU -lglut
-OBJS = display.o circle.o calc_points.o tree.o keyboard_mouse.o pipeline.o matrix_ops.o clip.o
+OBJS = display.o circle.o calc_points.o tree.o keyboard_mouse.o pipeline.o matrix_ops.o clipper.o
 
 run: main.o $(OBJS)
 	$(CC) main.o $(OBJS) $(GLUT) 
@@ -29,8 +29,8 @@ pipeline.o: pipeline.cpp
 matrix_ops.o: matrix_ops.cpp
 	$(CC) -c matrix_ops.cpp
 
-clip.o: clip.cpp
-	$(CC) -c clip.cpp
+clipper.o: clipper.cc
+	$(CC) -c clipper.cc
 
 clean:
 	rm *.o

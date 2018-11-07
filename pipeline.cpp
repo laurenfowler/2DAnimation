@@ -10,8 +10,6 @@ void pipeline(struct point * circ, int points){
 	extern struct point *circ_points;	
 	double transform[9];
 	double *tPtr;
-	list <point> poly_list_in; //declare list for clipping
-	list <point> poly_list_out; //output of clipping
 	point pixel;
 
 
@@ -42,15 +40,82 @@ void pipeline(struct point * circ, int points){
 	apply_transform(circ_points, points, tPtr);
 
 	//clip clip clip clip clip
+	point temp;
+	vertex change, tmp;
+	struct vertex *in_array, *out_array, *clip_boundary;
+	in_array = (struct vertex *) malloc(NUM_POINTS * sizeof(struct vertex));
+	out_array = (struct vertex *) malloc(NUM_POINTS * sizeof(struct vertex));
+	clip_boundary = (struct vertex *) malloc(2 * sizeof(struct vertex));
+	extern int *new_length;
+	int pts;
 
-	//transfer circ_points into a list
 	for(int i=0; i<points; i++){
-		pixel = *(circ_points + i);
-		poly_list_in.push_back(pixel);
+		temp = *(circ_points + i);
+		change.x = (float) temp.x;
+		change.y = (float) temp.y;
+		*(in_array + i) = change;
 	}
+
+
+	//call left clip
+	tmp.x = (float) VIEWPORT_MIN;
+	tmp.y = (float) VIEWPORT_MAX;
+	*(clip_boundary + 0) = tmp;
+	tmp.x = (float) VIEWPORT_MIN;
+	tmp.y = (float) VIEWPORT_MIN;
+	*(clip_boundary + 1) = tmp;
+	SutherlandHodgmanPolygonClip(in_array, out_array, points, new_length, clip_boundary);
+
+
+	pts = *new_length;
+
+/*
+	tmp.x = (float) VIEWPORT_MIN;
+	tmp.y = (float) VIEWPORT_MIN;
+	*(clip_boundary + 0) = tmp;
+	tmp.x = (float) VIEWPORT_MAX;
+	tmp.y = (float) VIEWPORT_MIN;
+	*(clip_boundary + 1) = tmp;
+	SutherlandHodgmanPolygonClip(out_array, in_array, pts, new_length, clip_boundary);
+
+	pts = *new_length;
+
+	tmp.x = (float) VIEWPORT_MAX;
+	tmp.y = (float) VIEWPORT_MIN;
+	*(clip_boundary + 0) = tmp;
+	tmp.x = (float) VIEWPORT_MAX;
+	tmp.y = (float) VIEWPORT_MAX;
+	*(clip_boundary + 1) = tmp;
+	SutherlandHodgmanPolygonClip(in_array, out_array, pts, new_length, clip_boundary);
+
+	pts = *new_length;
+
+	tmp.x = (float) VIEWPORT_MAX;
+	tmp.y = (float) VIEWPORT_MAX;
+	*(clip_boundary + 0) = tmp;
+	tmp.x = (float) VIEWPORT_MIN;
+	tmp.y = (float) VIEWPORT_MAX;
+	*(clip_boundary + 1) = tmp;
+
+	SutherlandHodgmanPolygonClip(out_array, in_array, pts, new_length, clip_boundary);
 	
-	//call clip
-	sh_clip(poly_list_in, poly_list_out);
+*/
+	pts = *new_length;
+
+	temp.x = 0;
+	temp.y = 0;
+
+	//0 our circ_points;
+	for(int i=0; i<points; i++){
+		*(circ_points + i) = temp;
+	}
+
+	for(int i=0; i<pts; i++){
+		change = *(out_array + i);
+		temp.x = (int) change.x;
+		temp.y = (int) change.y;
+		*(circ_points + i) = temp;
+	}
 
 
 }

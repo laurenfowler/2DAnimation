@@ -4,15 +4,16 @@
 //#include "namespaces.h"
 
 void display(void){
+
 	
     extern int points;
     extern struct point *circ;
     extern struct point *circ_points;
     extern struct point *trunk;
     extern struct point *trunk_points;
+	extern int *new_length;
 
     point pixel;
-
 
     // To insure that these got executed I pulled the malloc into main
     circ = (struct point *) malloc(NUM_POINTS * sizeof(struct point));
@@ -31,12 +32,15 @@ void display(void){
 	//cout << "going into pipeline" << endl;
     pipeline(circ, points);
 	//cout << "exit pipeline" << endl;
-	
+
+	int pts = *new_length;
+	cout << pts << endl;
+
     glBegin(GL_LINE_LOOP);
-    for(int i=0; i<points; i++){
+    for(int i=0; i<pts; i++){
         pixel = *(circ_points + i);
         glVertex2i(pixel.x, pixel.y);
-		//cout << i << " :" << pixel.x << " " << pixel.y << endl;
+		cout << i << " :" << pixel.x << " " << pixel.y << endl;
     }
 	//cout << "before glEnd()" << endl;
 	glEnd();
