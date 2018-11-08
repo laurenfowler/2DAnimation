@@ -39,6 +39,7 @@ void display(void){
     glBegin(GL_LINE_LOOP);
     for(int i=0; i<pts; i++){
         pixel = *(circ_points + i);
+		//cout << pixel.x << " " << pixel.y << endl;
         glVertex2i(pixel.x, pixel.y);
     }
 	//cout << "before glEnd()" << endl;

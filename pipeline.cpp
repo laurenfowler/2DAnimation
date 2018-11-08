@@ -12,6 +12,12 @@ void pipeline(struct point * circ, int points){
 	double *tPtr;
 	point pixel;
 
+	//list <vector <int> > tess_points;
+	//list <vector <int> > :: iterator it;
+	//it = tess_points.begin(); 
+//	point new_pt;
+//	vector <int> struct_to_vec;
+//	int t1, t2;
 
 	circ_points = circ;
 
@@ -112,6 +118,8 @@ void pipeline(struct point * circ, int points){
 		*(circ_points + i) = temp;
 	}
 
+
+	//move last output array back into circ_points
 	for(int i=0; i<pts; i++){
 		change = *(in_array + i);
 		temp.x = (int) change.x;
@@ -119,8 +127,29 @@ void pipeline(struct point * circ, int points){
 		*(circ_points + i) = temp;
 	}
 
-
     //calculate tesselation points each loop
+
+	tess(pts);
+
+	//list <vector <int> > tess_points;
+	//list <vector <int> > :: iterator it;
+	//it = tess_points.begin(); 
+	//point new_pt;
+	//vector <int> struct_to_vec;
+	//int t1, t2;
+	
+	//convert to list<vector<int>> v complicated i know
+	//for(int i=0; i<pts; i++){
+	//	new_pt= *(circ_points + i);
+	//	t1 = new_pt.x;
+	//	t2 = new_pt.y;
+	//	cout << t1 << endl;
+		//cout << t1 << endl;
+		//struct_to_vec.push_back(t1);
+		//struct_to_vec.push_back(temp.y);
+		//tess_points.push_back(struct_to_vec);
+	//}
+
     
 
 

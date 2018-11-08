@@ -5,7 +5,7 @@
 #define WINDOW_MIN 0
 #define VIEWPORT_MAX 900
 #define VIEWPORT_MIN 100
-#define NUM_POINTS 10000
+#define NUM_POINTS 1500
 #define PI 3.14159265
 
 #endif

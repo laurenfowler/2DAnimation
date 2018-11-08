@@ -1,9 +1,12 @@
 CC = g++ 
 GLUT = -lGL -lGLU -lglut
-OBJS = display.o circle.o calc_points.o tree.o keyboard_mouse.o pipeline.o matrix_ops.o clipper.o
+OBJS = display.o circle.o calc_points.o tree.o keyboard_mouse.o pipeline.o matrix_ops.o clipper.o tesselation.o
 
 run: main.o $(OBJS)
-	$(CC) main.o $(OBJS) $(GLUT) 
+	$(CC) main.o $(OBJS) $(GLUT) math/libmath.a
+
+math:
+	cd math && $(MAKE)
 
 main.o: main.cpp  
 	$(CC) -c main.cpp
@@ -32,6 +35,15 @@ matrix_ops.o: matrix_ops.cpp
 clipper.o: clipper.cc
 	$(CC) -c clipper.cc
 
+tesselation.o: tesselation.cpp
+	$(CC) -c tesselation.cpp
+
 clean:
 	rm *.o
 	rm a.out
+
+pristine:
+	rm *.o
+	rm a.out
+	cd math && $(MAKE) pristine
+	

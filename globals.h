@@ -15,4 +15,6 @@ double dscale;
 double reflect;
 int *new_length;
 
+list <triangles> triangle_list;
+
 #endif
