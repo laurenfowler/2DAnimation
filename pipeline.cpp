@@ -60,7 +60,7 @@ void pipeline(struct point * circ, int points){
 	}
 
 
-	//call left clip
+    //call sutherland hodgman polygon clipping
 	tmp.x = (float) VIEWPORT_MIN;
 	tmp.y = (float) VIEWPORT_MAX;
 	*(cb1 + 0) = tmp;
@@ -118,6 +118,11 @@ void pipeline(struct point * circ, int points){
 		temp.y = (int) change.y;
 		*(circ_points + i) = temp;
 	}
+
+
+    //calculate tesselation points each loop
+    
+
 
 
 }
