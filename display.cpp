@@ -35,17 +35,25 @@ void display(void){
 
 	int pts = *new_length;
 	//cout << pts << endl;
+	extern bool tesslat;
 
-    glBegin(GL_LINE_LOOP);
-    for(int i=0; i<pts; i++){
-        pixel = *(circ_points + i);
-		//cout << pixel.x << " " << pixel.y << endl;
-        glVertex2i(pixel.x, pixel.y);
-    }
-	//cout << "before glEnd()" << endl;
-	glEnd();
-    glFlush(); 
-	//cout << "printed tree" << endl;
+
+	if(tesslat){
+		cout << "tesselate" << endl;
+		draw_tess();
+	}	
+	else{
+		glBegin(GL_LINE_LOOP);
+		for(int i=0; i<pts; i++){
+			pixel = *(circ_points + i);
+			//cout << pixel.x << " " << pixel.y << endl;
+			glVertex2i(pixel.x, pixel.y);
+		}
+
+		glEnd();
+    	glFlush(); 
+	}
+
 
 	glutSwapBuffers();
 
@@ -55,3 +63,32 @@ void display(void){
     //free(trunk_points);
 
 }
+
+//code taken from Polygon Tesselation Project
+void draw_tess(){
+	extern list <triangles> triangle_list;
+	struct triangles tri;
+	vector <int> p1, p2, p3;
+
+    list <triangles> :: iterator it;
+
+	glColor3f(0.0,0.0,0.0);
+
+    it = triangle_list.begin();
+    for(int i =0; i<triangle_list.size(); i++){
+        tri = *it;
+	
+		p1 = tri.p1;
+		p2 = tri.p2;
+		p3 = tri.p3;
+
+		glBegin(GL_LINE_LOOP);
+			glVertex2i(p1.at(0), p1.at(1));
+			glVertex2i(p2.at(0), p2.at(1));
+			glVertex2i(p3.at(0), p3.at(1));
+		glEnd();
+        advance(it,1);
+    }
+	glFlush();
+}
+

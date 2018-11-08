@@ -31,6 +31,7 @@ bool new_intersect(list <vector <int> > point_list, vector <int> prev_point, vec
 double cross_prod2D( vector <int> p1, vector <int> p2, vector <int> p3);
 double angle_check(vector <int> p1, vector <int> p2, vector <int> p3);
 double triangle_area2D(vector<int>p1, vector<int> p2, vector<int>p3);
-
+void draw_tess();
+//void draw_line(vector<int> previous, vector<int> current)
 
 #endif

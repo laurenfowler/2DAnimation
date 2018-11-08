@@ -14,7 +14,8 @@ double scale = 1.0;
 double dscale;
 double reflect;
 int *new_length;
-
 list <triangles> triangle_list;
+bool tesslat = 0;
+
 
 #endif

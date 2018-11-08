@@ -52,6 +52,7 @@ void keyboard(unsigned char key, int x, int y){
 	extern double reflect;
 	extern double spin;
 	extern double dspin;
+	extern bool tesslat;
     //close program
     if (key=='q' || key=='Q'){
         exit(0);
@@ -72,6 +73,12 @@ void keyboard(unsigned char key, int x, int y){
 	if(key == 'i' || key == 'I'){
 		dspin = 0.0;
 		spin = 0.0;
+	}
+	if(key=='t' || key == 'T'){
+		tesslat = 1;		
+	}
+	if(key=='l' || key == 'L'){
+		tesslat = 0;
 	}
 
 }
