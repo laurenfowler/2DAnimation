@@ -18,5 +18,6 @@ int *new_length;
 list <triangles> triangle_list;
 bool tesslat = 0;
 vector<triangles> triangle_vec;
+bool fill = 0.0;
 
 #endif

@@ -53,6 +53,8 @@ void keyboard(unsigned char key, int x, int y){
 	extern double spin;
 	extern double dspin;
 	extern bool tesslat;
+	extern bool fill;
+
     //close program
     if (key=='q' || key=='Q'){
         exit(0);
@@ -75,11 +77,17 @@ void keyboard(unsigned char key, int x, int y){
 		spin = 0.0;
 	}
 	if(key=='t' || key == 'T'){
-		tesslat = 1;		
+		tesslat = 1;
+		fill = 0;		
 		glutPostRedisplay();
 	}
 	if(key=='l' || key == 'L'){
 		tesslat = 0;
+		fill = 0;
+		glutPostRedisplay();
+	}
+	if(key=='f' || key =='F'){
+		fill = 1;
 		glutPostRedisplay();
 	}
 

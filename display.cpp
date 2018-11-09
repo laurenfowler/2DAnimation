@@ -5,7 +5,7 @@
 
 void display(void){
 
-	cout << "in display" << endl;	
+	//cout << "in display" << endl;	
 
     extern int points;
     extern struct point *circ;
@@ -25,7 +25,7 @@ void display(void){
     trunk_points = (struct point *) malloc(6 * sizeof(struct point));
 //	triangle_list =(list <triangles> *) malloc(NUM_POINTS * sizeof(list<triangles>));
 
-	cout << "malloced everything" << endl;
+	//cout << "malloced everything" << endl;
 
 	glClear(GL_COLOR_BUFFER_BIT); //clear window
 
@@ -33,25 +33,23 @@ void display(void){
     glRecti(VIEWPORT_MIN, VIEWPORT_MIN, VIEWPORT_MAX, VIEWPORT_MAX);
 
     init_tree();
-	cout << "after init tree" << endl;
+	//cout << "after init tree" << endl;
 
     glColor3f(0.0,0.0,0.0);
 	//cout << "going into pipeline" << endl;
     pipeline(circ, points);
-	cout << "after pipeline" << endl;
+	//cout << "after pipeline" << endl;
 
 	int pts = *new_length;
 	//cout << pts << endl;
 	extern bool tesslat;
 	extern vector <triangles> triangle_vec;
-
+	extern bool fill;
 
 	if(tesslat){
-		cout << "trying to draw triangles" << endl;
 		struct triangles tri;
 		vector <int> p1, p2, p3;
 	
-		cout << triangle_vec.size() << endl;
 		for(int i=0; i<triangle_vec.size(); i++){
 			tri = triangle_vec.at(i);
 				
@@ -66,12 +64,54 @@ void display(void){
 			glEnd();
 		}
 		glFlush();
-		triangle_vec.clear(); //remove all data from triangle_vec
-		cout << triangle_vec.size() << endl;
-		cout << "drew all triangles" << endl;
+		//cout << triangle_vec.size() << endl;
+		//cout << "drew all triangles" << endl;
 	}	
 	else{
-		cout << "drawing normal tree" << endl;
+		//cout << "drawing normal tree" << endl;
+		glBegin(GL_LINE_LOOP);
+
+		for(int i=0; i<length_from_clip; i++){
+			pixel = *(circ_points + i);
+			//cout << pixel.x << " " << pixel.y << endl;
+			glVertex2i(pixel.x, pixel.y);
+		}
+
+		glEnd();
+    	glFlush(); 
+	}
+
+	if(fill){
+		struct triangles tri;
+		glColor3f(0.0,0.0,0.0);
+		glBegin(GL_LINE_LOOP);
+		for(int i=0; i<length_from_clip; i++){
+			pixel = *(circ_points + i);
+			//cout << pixel.x << " " << pixel.y << endl;
+			glVertex2i(pixel.x, pixel.y);
+		}
+
+		glEnd();
+		
+		vector <int> p1, p2, p3;
+		for(int i=0; i<triangle_vec.size(); i++){
+			tri = triangle_vec.at(i);
+				
+			p1 = tri.p1;
+			p2 = tri.p2;
+			p3 = tri.p3;
+
+			glBegin(GL_POLYGON);
+				glVertex2i(p1.at(0), p1.at(1));
+				glVertex2i(p2.at(0), p2.at(1));
+				glVertex2i(p3.at(0), p3.at(1));
+			glEnd();
+		}
+		glFlush();
+
+	}	
+	else{
+		//cout << "drawing normal tree" << endl;
 		glBegin(GL_LINE_LOOP);
 
 		for(int i=0; i<length_from_clip; i++){
@@ -85,13 +125,18 @@ void display(void){
 	}
 
 
+	if(fill || tesslat){
+		triangle_vec.clear(); 
+	}
+
+
 	glutSwapBuffers();
 
     //free(circ);
     free(circ_points);
     //free(trunk);
     //free(trunk_points);
-    cout << "freed everything" << endl;
+    //cout << "freed everything" << endl;
 
 }
 
@@ -101,7 +146,7 @@ void draw_tess(){
 	struct triangles tri;
 	vector <int> p1, p2, p3;
 
-	cout << "in draw tess" << endl;
+	//cout << "in draw tess" << endl;
 
     list <triangles> :: iterator it;
 
@@ -114,7 +159,7 @@ void draw_tess(){
 		p2 = tri.p2;
 		p3 = tri.p3;
 
-		cout << "before begin line loop" << endl;
+	//	cout << "before begin line loop" << endl;
 		glBegin(GL_LINE_LOOP);
 			glVertex2i(p1.at(0), p1.at(1));
 			glVertex2i(p2.at(0), p2.at(1));
@@ -123,6 +168,6 @@ void draw_tess(){
         advance(it,1);
     }
 	glFlush();
-	cout << "out of draw tess" << endl;
+	//cout << "out of draw tess" << endl;
 }
 

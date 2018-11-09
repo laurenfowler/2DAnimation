@@ -4,7 +4,7 @@
 
 void pipeline(struct point * circ, int points){
 
-	cout << "in pipeline" << endl;
+	//cout << "in pipeline" << endl;
     extern double spin;
 	extern double scale;
 	extern double reflect;
@@ -47,7 +47,7 @@ void pipeline(struct point * circ, int points){
 	translate_mat(WINDOW_MAX/2, WINDOW_MAX/2, tPtr);
 	apply_transform(circ_points, points, tPtr);
 
-	cout << "before clipping" << endl;
+	//cout << "before clipping" << endl;
 
 	//clip clip clip clip clip
 	point temp;
@@ -87,7 +87,7 @@ void pipeline(struct point * circ, int points){
 
 
 	pts = *new_length1;
-	cout << pts << endl;
+	//cout << pts << endl;
 
 	tmp.x = (float) VIEWPORT_MIN;
 	tmp.y = (float) VIEWPORT_MIN;
@@ -98,7 +98,7 @@ void pipeline(struct point * circ, int points){
 	SutherlandHodgmanPolygonClip(out_array, in_array, pts, new_length2, cb2);
 
 	pts = *new_length2;
-	cout << pts<< endl;
+	//cout << pts<< endl;
 
 	tmp.x = (float) VIEWPORT_MAX;
 	tmp.y = (float) VIEWPORT_MIN;
@@ -109,7 +109,7 @@ void pipeline(struct point * circ, int points){
 	SutherlandHodgmanPolygonClip(in_array, out_array, pts, new_length3, cb3);
 
 	pts = *new_length3;
-	cout << pts << endl;
+	//cout << pts << endl;
 
 	tmp.x = (float) VIEWPORT_MAX;
 	tmp.y = (float) VIEWPORT_MAX;
@@ -120,10 +120,10 @@ void pipeline(struct point * circ, int points){
 
 	SutherlandHodgmanPolygonClip(out_array, in_array, pts, new_length, cb4);
 	
-	cout << "after clipping" << endl;
+	//cout << "after clipping" << endl;
 
 	pts = *new_length;
-	cout << pts << endl;
+	//cout << pts << endl;
 	
 	extern int length_from_clip;
 	length_from_clip = pts;
@@ -151,9 +151,9 @@ void pipeline(struct point * circ, int points){
 	}*/
 
     //calculate tesselation points each loop
-
-	if(tesslat){
-		cout << "calculate tesselation" << endl;
+	extern bool fill;
+	if(tesslat || fill){
+		//cout << "calculate tesselation" << endl;
 		tess(pts, circ_points);
 	}
 }

@@ -9,6 +9,10 @@ double cross_prod3D(vector <int> p1, vector <int> p2, vector <int> p3){
 
 double cross_prod2D(vector <int> p1, vector <int> p2, vector <int> p3){
 
+	cout << "1 :" << p1[0] << " " << p1[1] << endl;
+	cout << "2 :" << p2[0] << " " << p2[1] << endl;
+	cout << "3 :" << p3[0] << " " << p3[1] << endl;
+
 	//build line a vars
 	double ax = (double) p1[0] - p2[0];
 	double ay = (double) p1[1] - p2[1];
