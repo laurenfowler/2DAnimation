@@ -18,7 +18,7 @@ double cross_prod2D(vector <int> p1, vector <int> p2, vector <int> p3){
 	double by = (double) p3[1] - p2[1];
 
 	//calculate z component
-	double z = (double) (ax*by) - (bx*ay);
+	double z = (ax*by) - (bx*ay);
 
 	return z;
 	

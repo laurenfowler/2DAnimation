@@ -12,6 +12,7 @@ void display(void){
     extern struct point *trunk;
     extern struct point *trunk_points;
 	extern int *new_length;
+	extern struct list <triangles> *triangle_list;
 
     point pixel;
 
@@ -20,6 +21,8 @@ void display(void){
     trunk = (struct point *) malloc(6 * sizeof(struct point));
     circ_points = (struct point *) malloc(NUM_POINTS * sizeof(struct point));
     trunk_points = (struct point *) malloc(6 * sizeof(struct point));
+	triangle_list =(list <triangles> *) malloc(NUM_POINTS * sizeof(list<triangles>));
+
 
 	glClear(GL_COLOR_BUFFER_BIT); //clear window
 
@@ -39,8 +42,8 @@ void display(void){
 
 
 	if(tesslat){
-		cout << "tesselate" << endl;
 		draw_tess();
+		free(triangle_list);
 	}	
 	else{
 		glBegin(GL_LINE_LOOP);
@@ -74,15 +77,18 @@ void draw_tess(){
 
 	glColor3f(0.0,0.0,0.0);
 
+	cout << triangle_list.size() << endl;
+
     it = triangle_list.begin();
     for(int i =0; i<triangle_list.size(); i++){
         tri = *it;
-	
+		
 		p1 = tri.p1;
 		p2 = tri.p2;
 		p3 = tri.p3;
 
 		glBegin(GL_LINE_LOOP);
+//			cout << p1.at(0) << " " << p1.at(1) << endl;
 			glVertex2i(p1.at(0), p1.at(1));
 			glVertex2i(p2.at(0), p2.at(1));
 			glVertex2i(p3.at(0), p3.at(1));

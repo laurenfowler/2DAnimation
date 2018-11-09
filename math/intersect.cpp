@@ -38,7 +38,6 @@ bool new_intersect(list<vector <int> > point_list, vector <int> p3, vector <int>
 		double Ua = UaTop/bottom;
 		double Ub = UbTop/bottom;
 
-
         if( (Ua > 0.0 && Ua < 1.0) && (Ub > 0.0 && Ub < 1.0)){
 			//cout << "ua: " << Ua << " ub :" << Ub << endl;
             cross = 1; 
