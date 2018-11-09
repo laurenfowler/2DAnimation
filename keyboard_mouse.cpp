@@ -76,9 +76,11 @@ void keyboard(unsigned char key, int x, int y){
 	}
 	if(key=='t' || key == 'T'){
 		tesslat = 1;		
+		glutPostRedisplay();
 	}
 	if(key=='l' || key == 'L'){
 		tesslat = 0;
+		glutPostRedisplay();
 	}
 
 }

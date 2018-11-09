@@ -40,10 +40,8 @@ void display(void){
 	//cout << pts << endl;
 	extern bool tesslat;
 
-
 	if(tesslat){
 		draw_tess();
-		free(triangle_list);
 	}	
 	else{
 		glBegin(GL_LINE_LOOP);
@@ -62,6 +60,7 @@ void display(void){
 
     //free(circ);
     free(circ_points);
+	free(triangle_list);
     //free(trunk);
     //free(trunk_points);
 
@@ -73,22 +72,21 @@ void draw_tess(){
 	struct triangles tri;
 	vector <int> p1, p2, p3;
 
+	cout << "in draw tess" << endl;
+
     list <triangles> :: iterator it;
 
 	glColor3f(0.0,0.0,0.0);
 
-	cout << triangle_list.size() << endl;
-
-    it = triangle_list.begin();
-    for(int i =0; i<triangle_list.size(); i++){
+    for(it = triangle_list.begin(); it != triangle_list.end(); it++){
         tri = *it;
 		
 		p1 = tri.p1;
 		p2 = tri.p2;
 		p3 = tri.p3;
 
+		cout << "before begin line loop" << endl;
 		glBegin(GL_LINE_LOOP);
-//			cout << p1.at(0) << " " << p1.at(1) << endl;
 			glVertex2i(p1.at(0), p1.at(1));
 			glVertex2i(p2.at(0), p2.at(1));
 			glVertex2i(p3.at(0), p3.at(1));
@@ -96,5 +94,6 @@ void draw_tess(){
         advance(it,1);
     }
 	glFlush();
+	cout << "out of draw tess" << endl;
 }
 

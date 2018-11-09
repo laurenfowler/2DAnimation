@@ -15,7 +15,7 @@ void tess(int pts){
 	next_point = 0;
 	struct triangles tri;
 
-	cout << "in tesselation" << endl;
+	//cout << "in tesselation" << endl;
 
 
 	//convert from array of structs to list of vectors of ints
@@ -129,11 +129,11 @@ void tess(int pts){
 
 		
 		double z = cross_prod2D(p1, p2, p3);
-		cout << z << endl;
+		//cout << z << endl;
 		if(z<0.0){
 			cross = new_intersect(points, p3, p1);
 			if(cross == 1){
-				cout << "intersect" << endl;
+	//			cout << "intersect" << endl;
 				next_point = 1;
 			}
 			else{
@@ -149,11 +149,11 @@ void tess(int pts){
 					double deg2 = angle2 * (180.0/PI);
 
 					if(deg1<deg2){
-						cout << "bad angle" << endl;
+	//					cout << "bad angle" << endl;
 						next_point = 1;
 					}
 					else{
-						cout << "new triangle" << endl;
+	//					cout << "new triangle" << endl;
 						//cout << "adding triangle" << endl;
 						tri.p1 = p1;
 						tri.p2 = p2;
@@ -163,11 +163,11 @@ void tess(int pts){
 						triangle_list.push_back(tri);
 						b = points.erase(b);
 						next_point = 0;
-						cout << "erased point" << endl;
+	//					cout << "erased point" << endl;
 					}
 				}
 				else{
-						cout << "new triangle" << endl;
+	//					cout << "new triangle" << endl;
 						//cout << "adding triangle" << endl;
 						tri.p1 = p1;
 						tri.p2 = p2;
@@ -177,22 +177,23 @@ void tess(int pts){
 						triangle_list.push_back(tri);
 						b = points.erase(b);
 						next_point = 0;
-						cout << "erased point" << endl;
+	//					cout << "erased point" << endl;
 				}
 			}
 
 		}
 		else if(z>0.0){
-			cout << "clockwise" << endl;
+	//		cout << "clockwise" << endl;
 			next_point = 1;
 		}
 		else if(z==0.0){
-			cout << "the same" << endl;
+	//		cout << "the same" << endl;
 			b = points.erase(b);
 		}
 	}
 
 	//add last triangle
+	cout << "last triangle" << endl;
 	a = points.begin();
 	b = points.begin();
 	c = points.begin();
@@ -202,5 +203,6 @@ void tess(int pts){
 	tri.p2 = *b;
 	tri.p3 = *c;
 	triangle_list.push_back(tri);
+	cout << "done with tesselation" << endl;
 
 }
