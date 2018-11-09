@@ -26,7 +26,7 @@ void SutherlandHodgmanPolygonClip(vertex *inVertexArray, vertex *outVertexArray,
 void Output(vertex newVertex, int *outLength, vertex *outVertexArray);
 bool Inside(vertex testVertex, vertex *clipBoundary);
 void Intersect(vertex first, vertex second, vertex *clipBoundary, vertex *intersectPt);
-void tess(int pts);
+void tess(int pts, struct point *);
 bool new_intersect(list <vector <int> > point_list, vector <int> prev_point, vector <int> new_point);
 double cross_prod2D( vector <int> p1, vector <int> p2, vector <int> p3);
 double angle_check(vector <int> p1, vector <int> p2, vector <int> p3);

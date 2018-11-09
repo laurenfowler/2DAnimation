@@ -4,6 +4,7 @@
 
 void pipeline(struct point * circ, int points){
 
+	cout << "in pipeline" << endl;
     extern double spin;
 	extern double scale;
 	extern double reflect;
@@ -46,6 +47,8 @@ void pipeline(struct point * circ, int points){
 	translate_mat(WINDOW_MAX/2, WINDOW_MAX/2, tPtr);
 	apply_transform(circ_points, points, tPtr);
 
+	cout << "before clipping" << endl;
+
 	//clip clip clip clip clip
 	point temp;
 	vertex change, tmp;
@@ -57,7 +60,13 @@ void pipeline(struct point * circ, int points){
 	cb3 = (struct vertex *) malloc(2 * sizeof(struct vertex));
 	cb4 = (struct vertex *) malloc(2 * sizeof(struct vertex));
 	extern int *new_length;
+	int *new_length1, *new_length2, *new_length3;
 	int pts;
+	int a, b, c ,d;
+	new_length = &a;
+	new_length1 = &b;
+	new_length2 = &c;
+	new_length3 = &d;
 
 	for(int i=0; i<points; i++){
 		temp = *(circ_points + i);
@@ -74,10 +83,11 @@ void pipeline(struct point * circ, int points){
 	tmp.x = (float) VIEWPORT_MIN;
 	tmp.y = (float) VIEWPORT_MIN;
 	*(cb1 + 1) = tmp;
-	SutherlandHodgmanPolygonClip(in_array, out_array, points, new_length, cb1);
+	SutherlandHodgmanPolygonClip(in_array, out_array, points, new_length1, cb1);
 
 
-	pts = *new_length;
+	pts = *new_length1;
+	cout << pts << endl;
 
 	tmp.x = (float) VIEWPORT_MIN;
 	tmp.y = (float) VIEWPORT_MIN;
@@ -85,9 +95,10 @@ void pipeline(struct point * circ, int points){
 	tmp.x = (float) VIEWPORT_MAX;
 	tmp.y = (float) VIEWPORT_MIN;
 	*(cb2 + 1) = tmp;
-	SutherlandHodgmanPolygonClip(out_array, in_array, pts, new_length, cb2);
+	SutherlandHodgmanPolygonClip(out_array, in_array, pts, new_length2, cb2);
 
-	pts = *new_length;
+	pts = *new_length2;
+	cout << pts<< endl;
 
 	tmp.x = (float) VIEWPORT_MAX;
 	tmp.y = (float) VIEWPORT_MIN;
@@ -95,9 +106,10 @@ void pipeline(struct point * circ, int points){
 	tmp.x = (float) VIEWPORT_MAX;
 	tmp.y = (float) VIEWPORT_MAX;
 	*(cb3 + 1) = tmp;
-	SutherlandHodgmanPolygonClip(in_array, out_array, pts, new_length, cb3);
+	SutherlandHodgmanPolygonClip(in_array, out_array, pts, new_length3, cb3);
 
-	pts = *new_length;
+	pts = *new_length3;
+	cout << pts << endl;
 
 	tmp.x = (float) VIEWPORT_MAX;
 	tmp.y = (float) VIEWPORT_MAX;
@@ -108,17 +120,19 @@ void pipeline(struct point * circ, int points){
 
 	SutherlandHodgmanPolygonClip(out_array, in_array, pts, new_length, cb4);
 	
+	cout << "after clipping" << endl;
 
 	pts = *new_length;
+	cout << pts << endl;
+	
+	extern int length_from_clip;
+	length_from_clip = pts;
 
 	temp.x = 0;
 	temp.y = 0;
 
-	//0 our circ_points;
-	for(int i=0; i<points; i++){
-		*(circ_points + i) = temp;
-	}
-
+	free(circ_points);
+	circ_points = (struct point *) malloc(pts*sizeof(struct point));
 
 	//move last output array back into circ_points
 	for(int i=0; i<pts; i++){
@@ -128,10 +142,19 @@ void pipeline(struct point * circ, int points){
 		*(circ_points + i) = temp;
 	}
 
+/*	cout << "before check circ_points" << endl;
+	//check circ_points
+	for(int i=0; i<pts; i++){
+		point hi = *(circ_points + i);
+		cout << hi.x << " " << hi.y << endl;
+
+	}*/
+
     //calculate tesselation points each loop
 
 	if(tesslat){
-		tess(pts);
+		cout << "calculate tesselation" << endl;
+		tess(pts, circ_points);
 	}
 }
 

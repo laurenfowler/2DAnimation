@@ -2,10 +2,9 @@
 #include "constants.h"
 #include "prototypes.h"
 
-void tess(int pts){
+void tess(int pts, point *circ_points){
 
-	extern struct point * circ_points;
-	extern list <triangles> triangle_list;
+	//extern struct point * circ_points;
 	extern vector <triangles> triangle_vec;
 
     list <vector <int> >:: iterator a, b, c, d, back, it;
@@ -16,10 +15,8 @@ void tess(int pts){
 	next_point = 0;
 	struct triangles tri;
 
-	//cout << "in tesselation" << endl;
-
-
 	//convert from array of structs to list of vectors of ints
+	cout << "converting" << endl;
 	for(int i=0; i<pts; i++){
 		vector <int> temp;
 		pixel = *(circ_points + i);
@@ -27,19 +24,19 @@ void tess(int pts){
 		temp.push_back(pixel.y);
 		points.push_back(temp);
 	}
+	cout << "done converting" << endl;
 
 	points.reverse(); //reverse the points
-
-	//points.push_back(points.front());
+	cout << "reversed point" << endl;
 
 	while(points.size() != 3){
-//		cout << points.size() << endl;
 		vector <int> p1, p2, p3, p4;
 		
 		back = points.begin();
 		advance(back, points.size()-1);
 
 		if(next_point == 1){
+			cout << "moving to next points" << endl;
 			counter++;
 			next_point = 0;
 			stop = 0;
@@ -109,6 +106,7 @@ void tess(int pts){
 				p4 = *d;
 				//cout << "advanced d" << endl;
 			}
+			cout << "moved to next points" << endl;
 		}
 		else{
 			counter = 1;
@@ -123,9 +121,9 @@ void tess(int pts){
 			p2 = *b;
 			p3 = *c;
 			p4 = *d;
+			cout << "started at beginning" << endl;
 		}
 
-		
 		double z = cross_prod2D(p1, p2, p3);
 		//cout << z << endl;
 		if(z<0.0){
@@ -158,14 +156,13 @@ void tess(int pts){
 						tri.p3 = p3;
 
 						//add triangle to triangle list
-						triangle_list.push_back(tri);
 						triangle_vec.push_back(tri);
 						b = points.erase(b);
 						next_point = 0;
 	//					cout << "erased point" << endl;
 					}
 				}
-				else{
+				else if(z>0.0){
 	//					cout << "new triangle" << endl;
 						//cout << "adding triangle" << endl;
 						tri.p1 = p1;
@@ -174,11 +171,15 @@ void tess(int pts){
 
 						//add triangle to triangle list
 						triangle_vec.push_back(tri);
-						triangle_list.push_back(tri);
 						b = points.erase(b);
 						next_point = 0;
-	//					cout << "erased point" << endl;
+	//					cout << "erased point" << endl; */
 				}
+				else if(z==0){
+					d = points.erase(d);
+					//next_point = 1;	
+				}
+				
 			}
 
 		}
@@ -202,7 +203,6 @@ void tess(int pts){
 	tri.p1 = *a;
 	tri.p2 = *b;
 	tri.p3 = *c;
-	triangle_list.push_back(tri);
 	triangle_vec.push_back(tri);
 	cout << "done with tesselation" << endl;
 

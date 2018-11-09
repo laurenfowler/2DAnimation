@@ -5,14 +5,16 @@
 
 void display(void){
 
-	
+	cout << "in display" << endl;	
+
     extern int points;
     extern struct point *circ;
     extern struct point *circ_points;
     extern struct point *trunk;
     extern struct point *trunk_points;
 	extern int *new_length;
-	extern struct list <triangles> *triangle_list;
+	extern int length_from_clip;
+//	extern struct list <triangles> *triangle_list;
 
     point pixel;
 
@@ -21,8 +23,9 @@ void display(void){
     trunk = (struct point *) malloc(6 * sizeof(struct point));
     circ_points = (struct point *) malloc(NUM_POINTS * sizeof(struct point));
     trunk_points = (struct point *) malloc(6 * sizeof(struct point));
-	triangle_list =(list <triangles> *) malloc(NUM_POINTS * sizeof(list<triangles>));
+//	triangle_list =(list <triangles> *) malloc(NUM_POINTS * sizeof(list<triangles>));
 
+	cout << "malloced everything" << endl;
 
 	glClear(GL_COLOR_BUFFER_BIT); //clear window
 
@@ -30,25 +33,25 @@ void display(void){
     glRecti(VIEWPORT_MIN, VIEWPORT_MIN, VIEWPORT_MAX, VIEWPORT_MAX);
 
     init_tree();
+	cout << "after init tree" << endl;
 
     glColor3f(0.0,0.0,0.0);
 	//cout << "going into pipeline" << endl;
     pipeline(circ, points);
-	//cout << "exit pipeline" << endl;
+	cout << "after pipeline" << endl;
 
 	int pts = *new_length;
 	//cout << pts << endl;
 	extern bool tesslat;
 	extern vector <triangles> triangle_vec;
 
+
 	if(tesslat){
 		cout << "trying to draw triangles" << endl;
 		struct triangles tri;
 		vector <int> p1, p2, p3;
-		list <triangles> :: iterator it;
-
-		glColor3f(0.0,0.0,0.0);
-
+	
+		cout << triangle_vec.size() << endl;
 		for(int i=0; i<triangle_vec.size(); i++){
 			tri = triangle_vec.at(i);
 				
@@ -63,13 +66,15 @@ void display(void){
 			glEnd();
 		}
 		glFlush();
-		free(triangle_list);
 		triangle_vec.clear(); //remove all data from triangle_vec
+		cout << triangle_vec.size() << endl;
 		cout << "drew all triangles" << endl;
 	}	
 	else{
+		cout << "drawing normal tree" << endl;
 		glBegin(GL_LINE_LOOP);
-		for(int i=0; i<pts; i++){
+
+		for(int i=0; i<length_from_clip; i++){
 			pixel = *(circ_points + i);
 			//cout << pixel.x << " " << pixel.y << endl;
 			glVertex2i(pixel.x, pixel.y);
@@ -86,6 +91,7 @@ void display(void){
     free(circ_points);
     //free(trunk);
     //free(trunk_points);
+    cout << "freed everything" << endl;
 
 }
 
