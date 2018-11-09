@@ -1,42 +1,43 @@
 CC = g++ 
+CFLAGS = -g
 GLUT = -lGL -lGLU -lglut
 OBJS = display.o circle.o calc_points.o tree.o keyboard_mouse.o pipeline.o matrix_ops.o clipper.o tesselation.o
 
 run: main.o $(OBJS)
-	$(CC) main.o $(OBJS) $(GLUT) math/libmath.a
+	$(CC) -g  main.o $(OBJS) $(GLUT) math/libmath.a
 
 math:
 	cd math && $(MAKE)
 
 main.o: main.cpp  
-	$(CC) -c main.cpp
+	$(CC) $(CFLAGS) -c main.cpp
 
 display.o: display.cpp
-	$(CC) -c display.cpp
+	$(CC) $(CFLAGS) -c display.cpp
 
 circle.o: circle.cpp
-	$(CC) -c circle.cpp
+	$(CC) $(CFLAGS) -c circle.cpp
 
 calc_points.o: calc_points.cpp
-	$(CC) -c calc_points.cpp
+	$(CC) $(CFLAGS) -c calc_points.cpp
 
 keyboard_mouse.o: keyboard_mouse.cpp
-	$(CC) -c keyboard_mouse.cpp
+	$(CC) $(CFLAGS) -c keyboard_mouse.cpp
 
 tree.o: tree.cpp
-	$(CC) -c tree.cpp
+	$(CC) $(CFLAGS) -c tree.cpp
 
 pipeline.o: pipeline.cpp
-	$(CC) -c pipeline.cpp
+	$(CC) $(CFLAGS) -c pipeline.cpp
 
 matrix_ops.o: matrix_ops.cpp
-	$(CC) -c matrix_ops.cpp
+	$(CC) $(CFLAGS) -c matrix_ops.cpp
 
 clipper.o: clipper.cc
-	$(CC) -c clipper.cc
+	$(CC) $(CFLAGS) -c clipper.cc
 
 tesselation.o: tesselation.cpp
-	$(CC) -c tesselation.cpp
+	$(CC) $(CFLAGS) -c tesselation.cpp
 
 clean:
 	rm *.o

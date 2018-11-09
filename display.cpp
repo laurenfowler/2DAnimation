@@ -41,7 +41,28 @@ void display(void){
 	extern bool tesslat;
 
 	if(tesslat){
-		draw_tess();
+		struct triangles tri;
+		vector <int> p1, p2, p3;
+		list <triangles> :: iterator it;
+
+		glColor3f(0.0,0.0,0.0);
+
+		for(it = triangle_list.begin(); it != triangle_list.end(); it++){
+			tri = *it;
+				
+			p1 = tri.p1;
+			p2 = tri.p2;
+			p3 = tri.p3;
+
+			glBegin(GL_LINE_LOOP);
+				glVertex2i(p1.at(0), p1.at(1));
+				glVertex2i(p2.at(0), p2.at(1));
+				glVertex2i(p3.at(0), p3.at(1));
+			glEnd();
+			advance(it,1);
+		}
+		glFlush();
+		free(triangle_list);
 	}	
 	else{
 		glBegin(GL_LINE_LOOP);
@@ -60,7 +81,6 @@ void display(void){
 
     //free(circ);
     free(circ_points);
-	free(triangle_list);
     //free(trunk);
     //free(trunk_points);
 
