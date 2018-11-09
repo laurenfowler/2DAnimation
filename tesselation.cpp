@@ -211,6 +211,5 @@ void tess(int pts, point *circ_points){
 	tri.p2 = *b;
 	tri.p3 = *c;
 	triangle_vec.push_back(tri);
-	cout << "done with tesselation" << endl;
 
 }
