@@ -6,6 +6,7 @@ void tess(int pts){
 
 	extern struct point * circ_points;
 	extern list <triangles> triangle_list;
+	extern vector <triangles> triangle_vec;
 
     list <vector <int> >:: iterator a, b, c, d, back, it;
     list <vector <int> > points, loc, points1;
@@ -24,13 +25,10 @@ void tess(int pts){
 		pixel = *(circ_points + i);
 		temp.push_back(pixel.x);
 		temp.push_back(pixel.y);
-		points1.push_back(temp);
+		points.push_back(temp);
 	}
 
-	for(it=points1.begin(); it != points1.end(); it++){
-		vector <int> tmp = *it;
-		points.push_front(tmp);
-	}
+	points.reverse(); //reverse the points
 
 	//points.push_back(points.front());
 
@@ -161,6 +159,7 @@ void tess(int pts){
 
 						//add triangle to triangle list
 						triangle_list.push_back(tri);
+						triangle_vec.push_back(tri);
 						b = points.erase(b);
 						next_point = 0;
 	//					cout << "erased point" << endl;
@@ -174,6 +173,7 @@ void tess(int pts){
 						tri.p3 = p3;
 
 						//add triangle to triangle list
+						triangle_vec.push_back(tri);
 						triangle_list.push_back(tri);
 						b = points.erase(b);
 						next_point = 0;
@@ -203,6 +203,7 @@ void tess(int pts){
 	tri.p2 = *b;
 	tri.p3 = *c;
 	triangle_list.push_back(tri);
+	triangle_vec.push_back(tri);
 	cout << "done with tesselation" << endl;
 
 }

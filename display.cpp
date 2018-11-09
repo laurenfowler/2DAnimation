@@ -39,16 +39,18 @@ void display(void){
 	int pts = *new_length;
 	//cout << pts << endl;
 	extern bool tesslat;
+	extern vector <triangles> triangle_vec;
 
 	if(tesslat){
+		cout << "trying to draw triangles" << endl;
 		struct triangles tri;
 		vector <int> p1, p2, p3;
 		list <triangles> :: iterator it;
 
 		glColor3f(0.0,0.0,0.0);
 
-		for(it = triangle_list.begin(); it != triangle_list.end(); it++){
-			tri = *it;
+		for(int i=0; i<triangle_vec.size(); i++){
+			tri = triangle_vec.at(i);
 				
 			p1 = tri.p1;
 			p2 = tri.p2;
@@ -59,10 +61,11 @@ void display(void){
 				glVertex2i(p2.at(0), p2.at(1));
 				glVertex2i(p3.at(0), p3.at(1));
 			glEnd();
-			advance(it,1);
 		}
 		glFlush();
 		free(triangle_list);
+		triangle_vec.clear(); //remove all data from triangle_vec
+		cout << "drew all triangles" << endl;
 	}	
 	else{
 		glBegin(GL_LINE_LOOP);

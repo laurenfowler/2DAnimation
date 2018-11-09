@@ -16,6 +16,6 @@ double reflect;
 int *new_length;
 list <triangles> triangle_list;
 bool tesslat = 0;
-
+vector<triangles> triangle_vec;
 
 #endif
